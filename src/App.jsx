@@ -48,7 +48,7 @@ export default function App() {
     )
       .then(res => res.json())
       .then(data => {
-        console.log(data, "imagesssssss")
+        // console.log(data, "imagesssssss")
         setImages(data.map(img => img?.urls?.regular));
 
       })
@@ -62,7 +62,7 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col bg-green-50 font-sans">
 
-      {/* simple header */}
+       {/* simple header  */}
 
       {/* <header className="bg-green-700 text-white px-6 py-4 shadow-md">
         <div className="max-w-6xl mx-auto flex justify-between items-center">
@@ -138,7 +138,6 @@ export default function App() {
         )}
 
       </header>
-
 
 
       <main className="flex-1" id="home">

@@ -12,6 +12,7 @@ body {
 
 /* Hero background */
 .hero {
+  background-color: #166534;
   background-image: url('./assets/nature2.jpg');
   background-size: cover;
   background-position: center;
