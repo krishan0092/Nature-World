@@ -1,0 +1,20 @@
+/* Import Google Font (Inter) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Set global font for body */
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Hero background */
+.hero {
+  background-image: url('./assets/nature2.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 90vh;
+  position: relative;
+}
