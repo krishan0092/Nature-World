@@ -76,12 +76,12 @@ export default function App() {
         </div>
       </header> */}
 
-      {/* hamburger menu added in  header */}
+      {/* hamburger menu added in  header for mobile view */}
 
       <header className="bg-green-700 text-white px-6 py-4 shadow-md">
         <div className="max-w-6xl mx-auto flex justify-between items-center">
 
-          <h1 className="text-2xl font-bold">NatureWorld</h1>
+          <h1 className="text-xl sm:text-2xl md:text-3xl font-bold">NatureWorld</h1>
           <nav className="hidden md:flex space-x-5 text-sm">
             <a href="#home">Home</a>
             <a href="#about">About</a>
@@ -156,7 +156,7 @@ export default function App() {
 
 
         <section id="about" className="py-16 px-6 bg-white text-center">
-          <h3 className="text-3xl font-bold text-green-700">About NatureWorld</h3>
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-green-700">About NatureWorld</h3>
 
           <p className="mt-4 text-gray-600 max-w-3xl mx-auto leading-relaxed">
             NatureWorld was created with a simple belief — when we protect nature, we
@@ -172,9 +172,7 @@ export default function App() {
 
 
         <section id="gallery" className="py-16 bg-green-50">
-          <h3 className="text-3xl font-bold text-center text-green-700 mb-8">
-            Nature Gallery
-          </h3>
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-center text-green-700 mb-8">Nature Gallery</h3>
 
           <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-4 px-6">
             {loading
@@ -198,9 +196,7 @@ export default function App() {
 
 
         <section id="contact" className="py-16 bg-white px-6">
-          <h3 className="text-3xl font-bold text-center text-green-700">
-            Contact Us
-          </h3>
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-center text-green-700 mb-8">Contact Us</h3>
 
           <form
             className="max-w-xl mx-auto mt-8 bg-green-50 p-6 rounded-xl shadow"
