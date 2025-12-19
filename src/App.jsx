@@ -14,6 +14,7 @@ import "./index.css";
 export default function App() {
   const [images, setImages] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(null);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -41,27 +42,29 @@ export default function App() {
   const key = "anXwt4L1MFHwVRtU2QiZxhct8GRMwa0X1ma-jCN-eSQ";
 
   useEffect(() => {
-  setLoading(true);
-  fetch(
-    `https://api.unsplash.com/photos/random?count=6&query=nature,animals&client_id=${key}`
-  )
-    .then(res => res.json())
-    .then(data => {
-      console.log(data,"imagesssssss")
-      setImages(data.map(img => img?.urls?.regular));
-      
-    })
-    .catch(err => console.log(err))
-    .finally(() => {
-      setLoading(false);
-    });
-}, []);
+    setLoading(true);
+    fetch(
+      `https://api.unsplash.com/photos/random?count=6&query=nature,animals&client_id=${key}`
+    )
+      .then(res => res.json())
+      .then(data => {
+        console.log(data, "imagesssssss")
+        setImages(data.map(img => img?.urls?.regular));
+
+      })
+      .catch(err => console.log(err))
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
 
 
   return (
     <div className="min-h-screen flex flex-col bg-green-50 font-sans">
 
-      <header className="bg-green-700 text-white px-6 py-4 shadow-md">
+      {/* simple header */}
+
+      {/* <header className="bg-green-700 text-white px-6 py-4 shadow-md">
         <div className="max-w-6xl mx-auto flex justify-between items-center">
           <h1 className="text-2xl font-bold">NatureWorld</h1>
           <nav className="space-x-5 text-sm">
@@ -71,7 +74,71 @@ export default function App() {
             <a href="#contact">Contact</a>
           </nav>
         </div>
+      </header> */}
+
+      {/* hamburger menu added in  header */}
+
+      <header className="bg-green-700 text-white px-6 py-4 shadow-md">
+        <div className="max-w-6xl mx-auto flex justify-between items-center">
+
+          <h1 className="text-2xl font-bold">NatureWorld</h1>
+          <nav className="hidden md:flex space-x-5 text-sm">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#contact">Contact</a>
+          </nav>
+
+
+          <button
+            className="md:hidden text-2xl"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            ☰
+          </button>
+        </div>
+
+
+        {menuOpen && (
+          <div className="md:hidden absolute top-16 left-0 w-full bg-green-800 text-white shadow-xl rounded-b-2xl animate-slideDown z-50">
+            <nav className="flex flex-col items-center py-6 space-y-3 text-lg font-medium">
+              <a
+                href="#home"
+                onClick={() => setMenuOpen(false)}
+                className="w-full text-center py-3 rounded-lg hover:bg-green-700 active:bg-green-600 transition-all"
+              >
+                Home
+              </a>
+
+              <a
+                href="#about"
+                onClick={() => setMenuOpen(false)}
+                className="w-full text-center py-3 rounded-lg hover:bg-green-700 active:bg-green-600 transition-all"
+              >
+                About
+              </a>
+
+              <a
+                href="#gallery"
+                onClick={() => setMenuOpen(false)}
+                className="w-full text-center py-3 rounded-lg hover:bg-green-700 active:bg-green-600 transition-all"
+              >
+                Gallery
+              </a>
+
+              <a
+                href="#contact"
+                onClick={() => setMenuOpen(false)}
+                className="w-full text-center py-3 rounded-lg hover:bg-green-700 active:bg-green-600 transition-all"
+              >
+                Contact
+              </a>
+            </nav>
+          </div>
+        )}
+
       </header>
+
 
 
       <main className="flex-1" id="home">
@@ -90,9 +157,17 @@ export default function App() {
 
         <section id="about" className="py-16 px-6 bg-white text-center">
           <h3 className="text-3xl font-bold text-green-700">About NatureWorld</h3>
-          <p className="mt-4 text-gray-600 max-w-3xl mx-auto">
-            NatureWorld spreads awareness about environmental protection.
+
+          <p className="mt-4 text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            NatureWorld was created with a simple belief — when we protect nature, we
+            protect life itself. Every forest, animal, river, and mountain plays an
+            important role in maintaining balance on our planet.
+            <br /><br />
+            Through this platform, we aim to spread awareness about environmental
+            conservation and wildlife protection, reminding everyone that even small
+            actions can create a big impact.
           </p>
+
         </section>
 
 
