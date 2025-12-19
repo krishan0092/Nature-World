@@ -19,6 +19,8 @@ export default function App() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(true);
+  const [heroLoaded, setHeroLoaded] = useState(false);
+
 
 
   const closeModal = () => setSelectedIndex(null);
@@ -141,7 +143,7 @@ export default function App() {
 
 
       <main className="flex-1" id="home">
-        <section className="hero flex items-center justify-center">
+        {/* <section className="hero flex items-center justify-center">
           <div className="absolute inset-0 bg-black/50"></div>
           <div className="relative text-center max-w-2xl text-white px-4">
             <h2 className="text-4xl md:text-5xl font-bold">
@@ -151,7 +153,29 @@ export default function App() {
               Let’s preserve forests, wildlife, water, and clean air.
             </p>
           </div>
-        </section>
+        </section> */}
+        <section className="hero flex items-center justify-center">
+
+  {/* Loader jab tak image load na ho */}
+  {!heroLoaded && (
+    <div className="absolute inset-0 bg-green-900 animate-pulse"></div>
+  )}
+
+  {/* Dark overlay */}
+  <div className="absolute inset-0 bg-black/50"></div>
+
+  {/* Hero text */}
+  <div className="relative text-center max-w-2xl text-white px-4">
+    <h2 className="text-4xl md:text-5xl font-bold">
+      Protect Nature, Protect Life
+    </h2>
+    <p className="mt-4 text-green-100">
+      Let’s preserve forests, wildlife, water, and clean air.
+    </p>
+  </div>
+
+</section>
+
 
 
         <section id="about" className="py-16 px-6 bg-white text-center">
