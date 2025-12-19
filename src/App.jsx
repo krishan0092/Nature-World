@@ -1,21 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./index.css";
 
 
-const images = [
-  "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
-  "https://images.unsplash.com/photo-1441974231531-c6227db76b6e",
-  "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
-  "https://images.unsplash.com/photo-1502082553048-f009c37129b9",
-  "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
-  "https://images.unsplash.com/photo-1470770841072-f978cf4d019e",
-];
+// const images = [
+//   "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+//   "https://images.unsplash.com/photo-1441974231531-c6227db76b6e",
+//   "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
+//   "https://images.unsplash.com/photo-1502082553048-f009c37129b9",
+//   "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+//   "https://images.unsplash.com/photo-1470770841072-f978cf4d019e",
+// ];
 
 export default function App() {
+  const [images, setImages] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(true);
+
 
   const closeModal = () => setSelectedIndex(null);
 
@@ -31,9 +34,32 @@ export default function App() {
     );
   };
 
+  const isValidEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  };
+  const key = "anXwt4L1MFHwVRtU2QiZxhct8GRMwa0X1ma-jCN-eSQ";
+
+  useEffect(() => {
+  setLoading(true);
+  fetch(
+    `https://api.unsplash.com/photos/random?count=6&query=nature,animals&client_id=${key}`
+  )
+    .then(res => res.json())
+    .then(data => {
+      console.log(data,"imagesssssss")
+      setImages(data.map(img => img?.urls?.regular));
+      
+    })
+    .catch(err => console.log(err))
+    .finally(() => {
+      setLoading(false);
+    });
+}, []);
+
+
   return (
     <div className="min-h-screen flex flex-col bg-green-50 font-sans">
-
 
       <header className="bg-green-700 text-white px-6 py-4 shadow-md">
         <div className="max-w-6xl mx-auto flex justify-between items-center">
@@ -76,15 +102,22 @@ export default function App() {
           </h3>
 
           <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-4 px-6">
-            {images.map((img, index) => (
-              <img
-                key={index}
-                src={img}
-                alt="Nature"
-                onClick={() => setSelectedIndex(index)}
-                className="h-48 w-full object-cover rounded-lg cursor-pointer hover:scale-105 transition-transform"
-              />
-            ))}
+            {loading
+              ? Array.from({ length: 6 }).map((_, i) => (
+                <div
+                  key={i}
+                  className="h-48 w-full rounded-lg bg-green-200 animate-pulse"
+                />
+              ))
+              : images.map((img, index) => (
+                <img
+                  key={index}
+                  src={img}
+                  alt="Nature"
+                  onClick={() => setSelectedIndex(index)}
+                  className="h-48 w-full object-cover rounded-lg cursor-pointer hover:scale-105 transition-transform"
+                />
+              ))}
           </div>
         </section>
 
@@ -102,8 +135,12 @@ export default function App() {
                 alert("Please fill all fields");
                 return;
               }
+              if (!isValidEmail(email)) {
+                alert("Please enter a valid email address");
+                return;
+              }
 
-              alert("Message sent successfully ✅");
+              alert("Message sent successfully");
               setName("");
               setEmail("");
               setMessage("");
@@ -147,33 +184,35 @@ export default function App() {
       </footer>
 
       {selectedIndex !== null && (
-        <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black flex items-center justify-center z-50">
 
           <button
             onClick={prevImage}
-            className="absolute left-5 text-white text-4xl">
+            className="absolute left-5 text-white text-4xl z-50">
             ‹
           </button>
 
           <img
             src={images[selectedIndex]}
-            className="max-h-[90vh] max-w-[90vw] rounded-lg"
             alt="Full view"
+            className="w-screen h-screen object-contain"
           />
 
           <button
             onClick={nextImage}
-            className="absolute right-5 text-white text-4xl">
+            className="absolute right-5 text-white text-4xl z-50">
             ›
           </button>
 
           <button
             onClick={closeModal}
-            className="absolute top-5 right-6 text-white text-2xl">
+            className="absolute top-5 right-6 text-white text-3xl z-50">
             ✕
           </button>
+
         </div>
       )}
+
     </div>
   );
 }
