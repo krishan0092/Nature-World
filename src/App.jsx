@@ -63,14 +63,14 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-green-50 font-sans">
-       <img
-      src="/src/assets/nature2.jpg"
-      alt=""
-      className="hidden"
-      onLoad={() => setHeroLoaded(true)}
-    />
+      <img
+        src="/src/assets/nature2.jpg"
+        alt=""
+        className="hidden"
+        onLoad={() => setHeroLoaded(true)}
+      />
 
-       {/* simple header  */}
+      {/* simple header  */}
 
       {/* <header className="bg-green-700 text-white px-6 py-4 shadow-md">
         <div className="max-w-6xl mx-auto flex justify-between items-center">
@@ -162,25 +162,25 @@ export default function App() {
         </section> */}
         <section className="hero flex items-center justify-center">
 
-  {/* Loader jab tak image load na ho */}
-  {!heroLoaded && (
-    <div className="absolute inset-0 bg-green-900 animate-pulse"></div>
-  )}
 
-  {/* Dark overlay */}
-  <div className="absolute inset-0 bg-black/50"></div>
+          {!heroLoaded && (
+            <div className="absolute inset-0 bg-green-900 animate-pulse"></div>
+          )}
 
-  {/* Hero text */}
-  <div className="relative text-center max-w-2xl text-white px-4">
-    <h2 className="text-4xl md:text-5xl font-bold">
-      Protect Nature, Protect Life
-    </h2>
-    <p className="mt-4 text-green-100">
-      Let’s preserve forests, wildlife, water, and clean air.
-    </p>
-  </div>
 
-</section>
+          <div className="absolute inset-0 bg-black/50"></div>
+
+
+          <div className="relative text-center max-w-2xl text-white px-4">
+            <h2 className="text-4xl md:text-5xl font-bold">
+              Protect Nature, Protect Life
+            </h2>
+            <p className="mt-4 text-green-100">
+              Let’s preserve forests, wildlife, water, and clean air.
+            </p>
+          </div>
+
+        </section>
 
 
 
