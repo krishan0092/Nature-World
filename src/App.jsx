@@ -63,6 +63,12 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-green-50 font-sans">
+       <img
+      src="/src/assets/nature2.jpg"
+      alt=""
+      className="hidden"
+      onLoad={() => setHeroLoaded(true)}
+    />
 
        {/* simple header  */}
 
